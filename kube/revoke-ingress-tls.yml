@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: revoke-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+    - revoke.greyh.at
+    secretName: revoke-tls
+  defaultBackend:
+    service:
+      name: revoke
+      port:
+        number: 804
+  rules:
+  - host: revoke.greyh.at
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: revoke
+            port:
+              number: 804

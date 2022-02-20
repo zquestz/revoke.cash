@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  labels:
+    service: revoke
+  name: revoke
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      service: revoke
+  template:
+    metadata:
+      labels:
+        service: revoke
+    spec:
+      containers:
+      - image: zquestz/revoke:latest
+        imagePullPolicy: Always
+        name: revoke
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "8Mi"
+      restartPolicy: Always
