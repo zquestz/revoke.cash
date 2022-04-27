@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "husky install"
+    "export": "next build && next export"
   },
   "private": true,
   "dependencies": {
