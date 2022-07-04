@@ -14,3 +14,5 @@ const nextConfig = {
 };
 
 module.exports = withPreact(nextConfig);
+
+module.exports.images = { loader: 'akamai', path: '/' };
